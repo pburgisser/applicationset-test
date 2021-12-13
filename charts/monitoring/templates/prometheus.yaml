@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  labels:
+    app: prometheus
+    prometheus: service-prometheus
+  name: service-prometheus
+  namespace: monitoring
+spec:
+  baseImage: {{ .Values.registry }}
+  logLevel: info
+  paused: false
+  replicas: {{ .Values.replicas }}
+  retention: 2h

@@ -4,25 +4,25 @@ metadata:
   name: monitoring
 spec:
   generators:
-  - list:
-      elements: 
-      - cluster: formation
-        url: https://1.2.3.4 # faux cluster URLs
-      - cluster: test
-        url: https://2.4.6.8
-      - cluster: production
-        url: https://9.8.7.6
-      - cluster: production
-        url: https://9.8.7.6
+    - clusters:
+        values:
+          registry: "registry.echallens.test.local"
   template:
     metadata:
-      name: '{{cluster}}-monitoring'
+      name: '{{name}}-monitoring'
     spec:
       project: "default"
       source:
-        repoURL: https://github.com/argoproj/argocd-example-apps/
+        repoURL: https://github.com/pburgisser/applicationset-test.git
         targetRevision: HEAD
-        path: guestbook
+        path: charts/monitoring
+        helm:
+          values: |
+            registry: '{{ values.registry }}'
       destination:
-        server: '{{url}}'
-        namespace: monitoring
+        server: '{{server}}'
+        namespace: '{{name}}-monitoring'
+
+      syncPolicy:
+        syncOptions:
+            - CreateNamespace=true
