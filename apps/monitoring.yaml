@@ -4,10 +4,19 @@ metadata:
   name: monitoring
 spec:
   generators:
-  - clusters: {}
+  - list:
+      elements: 
+      - cluster: formation
+        url: https://1.2.3.4 # faux cluster URLs
+      - cluster: test
+        url: https://2.4.6.8
+      - cluster: production
+        url: https://9.8.7.6
+      - cluster: production
+        url: https://9.8.7.6
   template:
     metadata:
-      name: '{{name}}-monitoring'
+      name: '{{cluster}}-monitoring'
     spec:
       project: "default"
       source:
@@ -15,5 +24,5 @@ spec:
         targetRevision: HEAD
         path: guestbook
       destination:
-        server: '{{server}}'
+        server: '{{url}}'
         namespace: monitoring
