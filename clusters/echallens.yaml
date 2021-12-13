@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  name: cHJvZC1lY2hhbGxlbnM=
+  server: aHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjCg==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: prod-echallens
+  labels:
+    argocd.argoproj.io/secret-type: cluster
