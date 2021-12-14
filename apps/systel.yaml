@@ -1,24 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: monitoring
+  name: systel
 spec:
   generators:
     - clusters:
         values:
           registry: "registry.echallens.test.local"
           site: "echallens"
-    
   template:
     metadata:
-      name: '{{name}}-monitoring'
+      name: '{{name}}-systel'
       labels:
-        app: monitoring
+        app: systel
     spec:
       project: "default"
       source:
-        #repoURL: https://github.com/pburgisser/applicationset-test.git
-        repoURL: 'https://git.{{ values.site}}.test.local/applicationset-test.git'
+        repoURL: https://github.com/pburgisser/applicationset-test.git
         targetRevision: HEAD
         path: charts/monitoring
         helm:
@@ -26,7 +24,7 @@ spec:
             registry: '{{ values.registry }}'
       destination:
         server: '{{server}}'
-        namespace: '{{name}}-monitoring'
+        namespace: '{{name}}-systel'
 
       syncPolicy:
         syncOptions:

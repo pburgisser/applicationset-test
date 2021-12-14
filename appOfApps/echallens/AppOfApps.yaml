@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app
+spec:
+  destination:
+    name: 'in-cluster'
+    namespace: argocd
+  source:
+    path: apps
+    repoURL: 'https://github.com/pburgisser/applicationset-test.git'
+    targetRevision: HEAD
+  project: default
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: appofapps
+spec:
+  destination:
+    name: 'in-cluster'
+    namespace: argocd
+  source:
+    path: appOfApps/echallens
+    repoURL: 'https://github.com/pburgisser/applicationset-test.git'
+    targetRevision: HEAD
+  project: default

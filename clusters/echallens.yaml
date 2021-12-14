@@ -9,6 +9,7 @@ metadata:
   name: formation
   labels:
     argocd.argoproj.io/secret-type: cluster
+    rapport: 'true'
 ---
 apiVersion: v1
 stringData:
@@ -20,6 +21,7 @@ metadata:
   name: production
   labels:
     argocd.argoproj.io/secret-type: cluster
+    rapport: 'true'
 ---
 apiVersion: v1
 stringData:
@@ -31,6 +33,7 @@ metadata:
   name: tools
   labels:
     argocd.argoproj.io/secret-type: cluster
+
 ---
 apiVersion: v1
 stringData:
@@ -53,3 +56,4 @@ metadata:
   name: formation
   labels:
     argocd.argoproj.io/secret-type: cluster
+    rapport: 'true'
